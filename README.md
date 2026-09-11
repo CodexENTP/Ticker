@@ -1,0 +1,2 @@
+# Ticker
+Stock ticker project
