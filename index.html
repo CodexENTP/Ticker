@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Codex Analytics NYSE/NASDAQ stock scanner." />
+  <title>Codex Analytics | Market Scanner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="codex-brand-enhanced" aria-label="Codex Analytics">
+        <img class="codex-ca-art" src="codex-ca.png" alt="" />
+        <div class="brand-divider"></div>
+        <div class="codex-word-art">
+          <img class="codex-word-image" src="codex-word.png" alt="CODEX" />
+          <div class="codex-analytics-line"><span></span><b>ANALYTICS</b><span></span></div>
+        </div>
+      </div>
+      <div class="header-pipe"></div>
+      <div class="tool-block">
+        <strong>Market Scanner</strong>
+        <span>NYSE + NASDAQ research terminal</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="top-actions">
+        <button id="settingsBtn" class="button quiet" title="API settings">Settings</button>
+        <button id="exportBtn" class="button quiet" disabled>Export</button>
+        <button id="scanBtn" class="button primary">Scan Market</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="control-panel">
+        <section class="quick-card">
+          <div class="section-kicker">QUICK START</div>
+          <h2>What are you looking for?</h2>
+          <label class="field">
+            <span>Strategy</span>
+            <select id="strategyPreset">
+              <option value="custom" selected>Custom</option>
+              <option value="quality">Quality & Profitability</option>
+              <option value="value">Value</option>
+              <option value="dividend">Dividend Income</option>
+              <option value="momentum">Momentum</option>
+              <option value="breakout">Breakout Candidates</option>
+              <option value="lowbeta">Lower Volatility</option>
+              <option value="smallcap">Profitable Small Cap</option>
+            </select>
+          </label>
+
+          <div class="mini-grid">
+            <label class="field">
+              <span>Signals from past</span>
+              <select id="scanDays">
+                <option value="3">3 trading days</option>
+                <option value="5">5 trading days</option>
+                <option value="10" selected>10 trading days</option>
+                <option value="20">20 trading days</option>
+                <option value="60">60 trading days</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Analyze up to</span>
+              <select id="candidateLimit">
+                <option value="250">250 stocks</option>
+                <option value="500" selected>500 stocks</option>
+                <option value="1000">1,000 stocks</option>
+                <option value="2500">2,500 stocks</option>
+                <option value="all">All matches</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="exchange-row">
+            <label><input type="checkbox" id="exchangeNYSE" checked /> NYSE</label>
+            <label><input type="checkbox" id="exchangeNASDAQ" checked /> NASDAQ</label>
+          </div>
+          <button id="resetBtn" class="text-button">Reset all filters</button>
+        </section>
+
+        <details class="filter-group" open>
+          <summary>
+            <span><b>Company Quality</b><small>Profitability, valuation, dividends</small></span>
+          </summary>
+          <div class="filter-body">
+            <label class="field">
+              <span>Profitability</span>
+              <select id="profitability">
+                <option value="positive" selected>Positive net income</option>
+                <option value="negative">Negative net income</option>
+                <option value="any">Any</option>
+              </select>
+            </label>
+
+            <div class="mini-grid">
+              <label class="field"><span>Min price</span><input type="number" id="minPrice" min="0" step="0.01" value="2" /></label>
+              <label class="field"><span>Max price</span><input type="number" id="maxPrice" min="0" step="0.01" placeholder="Any" /></label>
+            </div>
+            <div class="mini-grid">
+              <label class="field"><span>Min market cap ($M)</span><input type="number" id="minMarketCap" min="0" step="1" value="100" /></label>
+              <label class="field"><span>Max P/E</span><input type="number" id="maxPE" step="0.1" placeholder="Any" /></label>
+            </div>
+
+            <label class="field"><span>Sector</span><select id="sector"><option value="">All sectors</option></select></label>
+
+            <div class="mini-grid">
+              <label class="field"><span>Min revenue growth %</span><input type="number" id="minRevenueGrowth" step="0.1" placeholder="Any" /></label>
+              <label class="field"><span>Min ROE %</span><input type="number" id="minROE" step="0.1" placeholder="Any" /></label>
+            </div>
+            <label class="field"><span>Max debt / equity</span><input type="number" id="maxDebtEquity" min="0" step="0.1" placeholder="Any" /></label>
+
+            <div class="mini-grid">
+              <label class="field"><span>Min dividend yield %</span><input type="number" id="minDivYield" min="0" step="0.1" placeholder="Any" /></label>
+              <label class="field"><span>Max dividend yield %</span><input type="number" id="maxDivYield" min="0" step="0.1" placeholder="Any" /></label>
+            </div>
+            <label class="field">
+              <span>Dividend payer</span>
+              <select id="dividendPayer">
+                <option value="any" selected>Any</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Free cash flow</span>
+              <select id="fcfFilter">
+                <option value="any" selected>Any</option>
+                <option value="positive">Positive only</option>
+              </select>
+            </label>
+          </div>
+        </details>
+
+        <details class="filter-group">
+          <summary>
+            <span><b>Price & Risk</b><small>Beta, 52-week position, RSI, trend</small></span>
+          </summary>
+          <div class="filter-body">
+            <div class="mini-grid">
+              <label class="field"><span>Min beta</span><input type="number" id="minBeta" step="0.05" placeholder="Any" /></label>
+              <label class="field"><span>Max beta</span><input type="number" id="maxBeta" step="0.05" placeholder="Any" /></label>
+            </div>
+            <label class="field">
+              <span>Beta lookback</span>
+              <select id="betaLookback">
+                <option value="63">3 months</option>
+                <option value="126">6 months</option>
+                <option value="252" selected>1 year</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Best day to buy lookback</span>
+              <select id="weekdayLookback">
+                <option value="30">30 trading days</option>
+                <option value="63">3 months</option>
+                <option value="126">6 months</option>
+                <option value="252" selected>1 year</option>
+              </select>
+            </label>
+            <div class="mini-grid">
+              <label class="field"><span>Within % of 52W high</span><input type="number" id="nearHigh" min="0" max="100" step="0.5" placeholder="Any" /></label>
+              <label class="field"><span>Within % of 52W low</span><input type="number" id="nearLow" min="0" max="100" step="0.5" placeholder="Any" /></label>
+            </div>
+            <label class="field"><span>Min avg volume (20D)</span><input type="number" id="minAvgVolume" min="0" step="1000" value="100000" /></label>
+            <div class="mini-grid">
+              <label class="field"><span>Min RSI 14</span><input type="number" id="minRSI" min="0" max="100" step="1" placeholder="Any" /></label>
+              <label class="field"><span>Max RSI 14</span><input type="number" id="maxRSI" min="0" max="100" step="1" placeholder="Any" /></label>
+            </div>
+            <label class="field">
+              <span>Trend</span>
+              <select id="trendFilter">
+                <option value="any" selected>Any trend</option>
+                <option value="above20">Above SMA 20</option>
+                <option value="above50">Above SMA 50</option>
+                <option value="above200">Above SMA 200</option>
+                <option value="bullstack">SMA 20 &gt; 50 &gt; 200</option>
+              </select>
+            </label>
+          </div>
+        </details>
+
+        <details class="filter-group">
+          <summary>
+            <span><b>Signal Sensitivity</b><small>Fine-tune technical alerts</small></span>
+          </summary>
+          <div class="filter-body">
+            <div class="mini-grid">
+              <label class="field"><span>Gap threshold %</span><input type="number" id="gapThreshold" min="0.1" max="50" step="0.1" value="2" /></label>
+              <label class="field"><span>Golden Star tolerance %</span><input type="number" id="goldenTolerance" min="0.1" max="10" step="0.1" value="2.5" /></label>
+            </div>
+            <div class="mini-grid">
+              <label class="field"><span>Unusual volume ×</span><input type="number" id="unusualVolumeMultiplier" min="1.1" max="20" step="0.1" value="2" /></label>
+              <label class="field"><span>Breakout volume ×</span><input type="number" id="breakoutVolumeMultiplier" min="1" max="20" step="0.1" value="1.5" /></label>
+            </div>
+            <label class="field">
+              <span>Required signal</span>
+              <select id="requiredSignal">
+                <option value="any" selected>Any / no requirement</option>
+                <option value="golden">Golden Star</option>
+                <option value="gapup">Gap Up</option>
+                <option value="gapdown">Gap Down</option>
+                <option value="bollingerup">Bollinger Breakout</option>
+                <option value="bollingerdown">Bollinger Breakdown</option>
+                <option value="goldencross">Golden Cross</option>
+                <option value="deathcross">Death Cross</option>
+                <option value="macdbull">MACD Bullish Cross</option>
+                <option value="macdbear">MACD Bearish Cross</option>
+                <option value="unusualvolume">Unusual Volume</option>
+                <option value="breakout52">52-Week Breakout</option>
+                <option value="volbreakout">Volume-Confirmed Breakout</option>
+              </select>
+            </label>
+          </div>
+        </details>
+      </aside>
+
+      <section class="content">
+        <div class="status-card">
+          <div class="status-copy">
+            <span id="statusDot" class="status-dot idle"></span>
+            <div>
+              <strong id="statusTitle">Ready to scan</strong>
+              <span id="statusText">Choose a strategy or customize the filters.</span>
+            </div>
+          </div>
+          <div id="progressWrap" class="progress-wrap hidden">
+            <div class="progress-bar"><div id="progressBar"></div></div>
+            <span id="progressLabel">0%</span>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat"><span>Analyzed</span><strong id="statAnalyzed">0</strong></div>
+          <div class="stat"><span>Matches</span><strong id="statMatches">0</strong></div>
+          <div class="stat"><span>Golden Star</span><strong id="statGolden">0</strong></div>
+          <div class="stat"><span>Gap Up</span><strong id="statGapUp">0</strong></div>
+          <div class="stat"><span>Gap Down</span><strong id="statGapDown">0</strong></div>
+        </div>
+
+        <div class="results-header">
+          <div>
+            <div class="section-kicker">RESULTS</div>
+            <h2>Scanner Results</h2>
+          </div>
+          <div class="result-controls">
+            <select id="resultView" aria-label="Result list">
+              <option value="all">All Matches</option>
+              <option value="golden">Golden Star</option>
+              <option value="gapup">Gap Up</option>
+              <option value="gapdown">Gap Down</option>
+              <option value="bollingerup">Bollinger Breakout</option>
+              <option value="bollingerdown">Bollinger Breakdown</option>
+              <option value="goldencross">Golden Cross</option>
+              <option value="deathcross">Death Cross</option>
+              <option value="macdbull">MACD Bullish Cross</option>
+              <option value="macdbear">MACD Bearish Cross</option>
+              <option value="unusualvolume">Unusual Volume</option>
+              <option value="breakout52">52-Week Breakout</option>
+              <option value="volbreakout">Volume-Confirmed Breakout</option>
+            </select>
+            <input id="resultSearch" type="search" placeholder="Search ticker or company…" />
+            <select id="sortBy">
+              <option value="scoreDesc">Sort: Codex Score</option>
+              <option value="ticker">Ticker</option>
+              <option value="marketCapDesc">Market cap</option>
+              <option value="nearHighAsc">Closest to 52W high</option>
+              <option value="divYieldDesc">Dividend yield</option>
+              <option value="betaAsc">Lowest beta</option>
+              <option value="gapDesc">Largest gap up</option>
+              <option value="gapAsc">Largest gap down</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Score</th>
+                  <th>Ticker</th>
+                  <th>Company</th>
+                  <th>Exchange</th>
+                  <th>Price</th>
+                  <th>Net Income</th>
+                  <th>52W High</th>
+                  <th>% From High</th>
+                  <th>Beta</th>
+                  <th>Dividend</th>
+                  <th>Yield</th>
+                  <th>RSI</th>
+                  <th>Avg Vol</th>
+                  <th>Signals</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody">
+                <tr><td colspan="14" class="empty">Run a scan to see matching stocks.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <details class="method-card">
+          <summary>How the technical signals work</summary>
+          <div class="method-body">
+            <p><strong>Golden Star (Custom):</strong> price, SMA20 and SMA50 converge while price and moving-average slopes strengthen. This is a transparent approximation, not StockInvest.us's proprietary formula.</p>
+            <p><strong>Golden / Death Cross:</strong> SMA50 crosses above / below SMA200.</p>
+            <p><strong>Bollinger Breakout / Breakdown:</strong> close crosses above the upper or below the lower 20-day, 2-standard-deviation Bollinger Band.</p>
+            <p><strong>MACD Cross:</strong> MACD(12,26) crosses its 9-period signal line.</p>
+            <p><strong>Unusual Volume:</strong> session volume exceeds your selected multiple of the prior 20-session average.</p>
+            <p><strong>52-Week Breakout:</strong> closing price exceeds the prior 252-session high.</p>
+            <p><strong>Volume-Confirmed Breakout:</strong> price closes above the prior 20-session high while volume exceeds your selected multiple of the prior 20-session average.</p>
+            <p><strong>Gap:</strong> opening price versus the prior session close.</p>
+            <p><strong>Best Day to Buy:</strong> compares weekday average/median prices and how often each weekday produced the lowest intraday price of its calendar week.</p>
+            <p><strong>Codex Score:</strong> a transparent 0–100 research score combining profitability, price trend, momentum, dividend, proximity to highs, volume quality, and bullish/bearish signal balance. It is a ranking aid, not a forecast.</p>
+          </div>
+        </details>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" class="dialog-card" id="settingsForm">
+      <div class="dialog-title-row">
+        <div><div class="section-kicker">DATA CONNECTION</div><h2>Business Quant API</h2></div>
+        <button value="cancel" class="icon-button" aria-label="Close">×</button>
+      </div>
+      <p>Your API key stays in this browser's local storage and is not included in the GitHub repository.</p>
+      <label class="field"><span>API Key</span><input id="apiKey" type="password" autocomplete="off" placeholder="Paste API key" /></label>
+      <div class="dialog-actions">
+        <button type="button" id="testApiBtn" class="button quiet">Test</button>
+        <button value="save" class="button primary">Save Settings</button>
+      </div>
+      <div id="apiTestResult" class="api-test"></div>
+    </form>
+  </dialog>
+
+  <dialog id="detailDialog">
+    <div class="dialog-card detail-dialog">
+      <div class="dialog-title-row">
+        <div><div class="section-kicker">STOCK DETAIL</div><h2 id="detailTitle">—</h2></div>
+        <button id="closeDetailBtn" class="icon-button" aria-label="Close">×</button>
+      </div>
+      <div id="detailContent"></div>
+    </div>
+  </dialog>
+
+  <script src="api.js"></script>
+  <script src="scanner.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

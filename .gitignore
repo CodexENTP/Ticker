@@ -1,0 +1,3 @@
+# No secrets should be committed.
+.env
+*.env
