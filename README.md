@@ -1,89 +1,61 @@
-# Girls Inc. PDF Workbench — v5
+# Codex Analytics Market Scanner v4
 
-A browser-based PDF arranging and splitting tool branded for Girls Inc. of Columbus & Phenix-Russell. PDF processing stays in the browser; the app does not upload document contents to a server.
+A static GitHub Pages stock research scanner using Business Quant for market/fundamental/history data and local browser calculations for technical analysis.
 
-## New in v5
+## What changed in v4
 
-### Whole-PDF workflow
-- A **Source PDFs** strip appears above the individual page workspace.
-- Drag source PDF cards left/right to reorder entire PDFs.
-- Reordering a source PDF gathers its currently included pages back into a block while preserving the **current edited internal order** of those pages.
-- Drag an entire source PDF from the Source PDFs strip directly into the individual page grid.
-- A large **INSERT N-PAGE PDF HERE** marker shows the exact insertion point.
-- Whole-PDF movement is a **MOVE**, not a duplicate/copy.
-- Deleted pages stay deleted when a PDF is moved.
+- Simplified four-mode start screen:
+  - Best Opportunities
+  - Gap-Fill Reversal
+  - Early Golden Cross
+  - Build My Scan
+- Quiz-guided filtering instead of exposing every technical control.
+- Business Quant free-tier budget tracker (30 calls/day as documented when this build was designed).
+- Local caching:
+  - Universe: 24 hours
+  - Screener metadata: 7 days
+  - Quote batches: current browser session / up to 12 hours
+- Fundamental pre-screen before historical downloads.
+- Gap-Fill Reversal engine:
+  - positive net income required
+  - prior bullish gap-up
+  - configurable age/range
+  - open/unfilled gap detection
+  - downtrend/pullback confirmation
+  - RSI recovery
+  - MACD improvement/crossover
+  - optional technical confirmations
+- Early Golden Cross only (no regular Golden Cross preset): SMA50 below but rising toward SMA200 with narrowing distance.
+- Wilder-style RSI(14).
+- Correctly aligned MACD 12/26/9 calculation.
+- Optional confirmations calculated locally: RSI bullish divergence, Bollinger reversal, unusual volume, higher low, bullish engulfing, SMA20 reclaim, MACD crossover, Early Golden Cross.
+- Strategy-aware Codex subscores: Quality, Value, Trend, Momentum, Reversal, Risk.
+- Matches / Near Matches / All Analyzed.
+- “Why this matched” detail explanation.
+- Compact price chart with SMA20/SMA50/SMA200 and gap-zone shading.
+- Local watchlist.
+- Local scan history.
+- Saved scan profile storage foundation.
+- CSV export.
+- ROE metadata aliases include `Return on Equity (Yr)` / `ROE (Yr)` rather than a generic ROI field.
 
-### Source PDF cards
-- Compact by default.
-- Use **Expand** to see view-only thumbnails of all original pages.
-- Pages removed from the project are visibly marked as removed.
-- Expanded thumbnails are reference-only; page editing remains in the main workspace.
+## Deploy to GitHub Pages
 
-### Better large-document editing
-- Page drag-and-drop uses automatic scrolling near the browser edges.
-- **Go to page #** jumps directly to a page and highlights it.
-- **Move selected before/after page #** allows precise long-distance moves.
-- Multiple selected pages move together and preserve their current relative order.
+1. Create or open your GitHub repository.
+2. Replace the existing app files with everything in this ZIP.
+3. Commit/push to the `main` branch.
+4. In GitHub: **Settings → Pages → Deploy from a branch → main → /(root)**.
+5. Open the Pages URL.
+6. Go to **Settings**, enter your Business Quant API key, and click **Save & Test**.
 
-### Selection behavior
-- Click = select one page.
-- Ctrl+Click / Cmd+Click = add or remove individual pages from the selection.
-- Shift+Click = select a continuous range from the most recent selection anchor.
+## API notes
 
-### Undo / Redo
-- Visible **Undo** and **Redo** buttons.
-- Ctrl+Z / Cmd+Z = Undo.
-- Ctrl+Y / Cmd+Y = Redo.
-- Ctrl+Shift+Z / Cmd+Shift+Z = Redo.
-- Undo/Redo covers page moves, whole-PDF moves, source-PDF reorder, deletion, rotation, bulk moves, and Reset Arrangement.
-- Editing history is kept for up to 100 actions.
+The API key is stored only in browser localStorage by this static build. Do not commit a key into the repository.
 
-### Performance
-- Page and source thumbnails use lazy rendering so large projects do not try to render every PDF page immediately.
+If Business Quant's own direct endpoint rejects your key as invalid, the app cannot correct that account-side problem. If a direct endpoint works but the app reports “Failed to fetch,” browser CORS may require a proxy architecture.
 
-### Reset vs Clear
-- **Reset arrangement** restores all currently included pages to original upload/file order and original page order. Deleted pages remain deleted. Rotations are preserved.
-- **Clear project** removes every loaded PDF and clears editing history.
+The on-screen API count tracks calls made by this browser. Business Quant remains the authority for actual quota usage.
 
-## Existing functionality retained
-- Upload multiple PDFs.
-- Individual page thumbnails.
-- Drag individual pages into a new order.
-- Rotate pages individually or as a selection.
-- Delete pages.
-- Extract selected pages into one PDF.
-- Split selected pages into individual PDFs inside a ZIP.
-- Split by custom ranges.
-- Custom filename dialog for all download operations.
-- Girls Inc. of Columbus & Phenix-Russell branding and embedded logo.
+## Research disclaimer
 
-## Update an existing GitHub Pages installation
-
-1. Download and unzip the v5 package.
-2. In your existing GitHub repository, replace these files in the repository root:
-   - `index.html`
-   - `styles.css`
-   - `app.js`
-   - `README.md` (optional, but recommended)
-3. Commit the changes. Example commit message:
-
-   `Add whole-PDF arranging, navigator, undo-redo, and large-file improvements`
-
-4. If GitHub Pages is already configured to deploy from the `main` branch and `/ (root)`, no Pages setting changes are needed.
-5. After deployment completes, use **Ctrl+F5** on Windows to force-refresh the site if the old version is cached.
-
-## Files
-
-- `index.html` — application layout, embedded Girls Inc. logo, controls, templates, and dialogs.
-- `styles.css` — Girls Inc. styling, source PDF strip, page workspace, insertion marker, and responsive layout.
-- `app.js` — PDF loading, arranging, whole-document movement, undo/redo, selection, lazy rendering, splitting, and export logic.
-
-## External browser libraries
-
-The app loads these libraries from jsDelivr:
-- PDF.js
-- pdf-lib
-- SortableJS
-- JSZip
-
-The PDF documents themselves are processed locally in the browser.
+Codex scores and technical detections are research heuristics, not investment recommendations or validated predictive models. Confirm market data and any trade decision independently.
