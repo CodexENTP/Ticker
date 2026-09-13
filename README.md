@@ -1,23 +1,17 @@
-# Codex Analytics Market Scanner v4.1.1 — Resilient UI Patch
+# Codex Analytics Market Scanner v5
 
-This package is a full replacement for the previous v4 repository files.
+Deploy the entire contents of this folder to the root of a GitHub Pages repository.
 
-## What this patch fixes
-- Restores the Codex dark navy / bronze visual shell and dotted background.
-- Constrains the CA and CODEX header artwork so images cannot expand to intrinsic size.
-- Crops the stray bronze edge artifact from the CA artwork.
-- Adds a complete inline CSS fallback inside `index.html` while retaining `styles.css` as the normal stylesheet. If GitHub Pages serves a stale/missing stylesheet, the page remains fully styled.
-- Uses explicit `./` asset paths and cache-busting version parameters.
-- Keeps the v4 scanner logic: four scan modes, quiz builder, saved profiles, API-budget tracking/caching, Gap-Fill Reversal, Early Golden Cross, RSI/MACD analysis, subscores, near matches, watchlist, history and CSV export.
+## Home page
+`index.html` is now the scanner selector:
+- **Manual Scan** → `/manual/` (V1 workflow)
+- **Market Scanner** → `/scanner/` (guided/new workflow)
 
-## Deploy
-1. Delete/replace the old app files in the repository root.
-2. Upload **all** files from this package to that same root.
-3. Commit the changes.
-4. Confirm GitHub Settings → Pages is still publishing from `main` and `/(root)`.
-5. After GitHub finishes deploying, open the site and perform one hard refresh (`Ctrl+F5` on Windows).
+The Codex logo inside either scanner returns to the selector.
 
-Do not upload only `index.html`; the JS and image assets in this package belong together.
+## API key
+Both scanners use the same browser-local key: `codex-bq-key`.
+The home page asks for a key on first visit before either scanner is used. Direct visits to either scanner also guard against a missing key.
 
-## API note
-Business Quant must accept the API key at its own endpoint before the scanner can retrieve live data. The UI will still load correctly without a working API key.
+## Deployment
+Replace the old repository contents with this package, commit, and allow GitHub Pages to rebuild. A hard refresh is recommended after deployment.

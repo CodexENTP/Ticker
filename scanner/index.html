@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#041226">
+  <title>Codex Analytics | Market Scanner</title>
+  <!-- External stylesheet plus a complete inline fallback. The inline copy keeps GitHub Pages usable even if CSS is stale/missed. -->
+  <link rel="stylesheet" href="./styles.css?v=5.0">
+  <style id="codex-style-fallback">:root{--bg:#041226;--panel:#091a31;--panel2:#102640;--line:#24425e;--text:#f6f0e8;--muted:#aeb7c3;--accent:#c17b3d;--accent2:#e0a568;--ok:#7fc49a;--danger:#d78585;--shadow:0 18px 45px rgba(0,0,0,.34)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% -20%,#17375a 0,transparent 40%),var(--bg);color:var(--text);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif;min-height:100vh}.topbar{height:82px;display:flex;align-items:center;padding:12px 24px;border-bottom:1px solid var(--line);background:rgba(4,18,38,.94);position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:12px}.ca{width:54px;height:54px;object-fit:contain}.word{width:105px}.brandline{height:50px;width:1px;background:linear-gradient(var(--accent2),var(--accent))}.analytics{font-size:9px;letter-spacing:4px;text-align:center;color:var(--accent2)}.pipe{height:38px;width:1px;background:var(--line);margin:0 18px}.tool{display:flex;flex-direction:column}.tool b{font-size:18px}.tool small,.muted{color:var(--muted)}.spacer{flex:1}.budget,.budget-large{border:1px solid rgba(193,123,61,.5);background:#0c2039;color:var(--accent2);padding:8px 12px;border-radius:999px;margin-right:10px}.budget-large{display:inline-block;font-size:18px}.nav{display:flex;gap:4px;padding:10px 24px;border-bottom:1px solid var(--line);background:#06152a}.nav button{background:none;border:0;color:var(--muted);padding:9px 14px;border-radius:8px;cursor:pointer}.nav button.active{background:var(--panel2);color:var(--text)}main{max-width:1240px;margin:auto;padding:28px}.view{display:none}.view.active{display:block}.hero,.page-title{max-width:760px;margin-bottom:24px}.kicker{color:var(--accent2);font-size:11px;font-weight:800;letter-spacing:2px}h1{font-size:34px;margin:6px 0}h2{margin:4px 0}.hero p,.page-title p{color:var(--muted);font-size:16px}.mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.mode-card{min-height:135px;text-align:left;padding:20px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(145deg,var(--panel),var(--panel2));color:var(--text);cursor:pointer;box-shadow:var(--shadow)}.mode-card:hover,.mode-card.selected{border-color:var(--accent);transform:translateY(-2px)}.mode-card.featured:after{content:'PERSONAL STRATEGY';display:block;margin-top:12px;color:var(--accent2);font-size:9px;letter-spacing:1px}.mode-card b{display:block;font-size:18px;margin-bottom:8px}.mode-card span{color:var(--muted)}.panel,.advanced,.scan-summary{margin-top:18px;background:rgba(9,26,49,.88);border:1px solid var(--line);border-radius:16px;padding:20px}.hidden{display:none!important}.quiz-step{margin-bottom:22px}.quiz-step h3{margin:0 0 10px}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{border:1px solid var(--line);background:#07182e;color:var(--text);border-radius:10px;padding:10px 13px;cursor:pointer}.choice.on{border-color:var(--accent2);background:#182f49}.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}label{display:flex;flex-direction:column;gap:6px;color:var(--muted)}input,select{background:#06152a;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:10px;width:100%}.btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07111f}.btn.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.link{background:0;border:0;color:var(--accent2);cursor:pointer;padding:0}.scan-summary{display:flex;justify-content:space-between;gap:20px;align-items:center}.summary-tags{display:flex;gap:7px;flex-wrap:wrap}.tag{background:#132c48;border:1px solid var(--line);padding:5px 8px;border-radius:999px;color:#d8e1eb;font-size:12px}.results-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:14px}.actions,.row{display:flex;gap:8px;align-items:center}.progress{height:4px;background:#112b45;border-radius:10px;overflow:hidden;margin-bottom:16px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}.result-cards{display:grid;gap:10px}.stock-card{display:grid;grid-template-columns:1.3fr .65fr .8fr .8fr .8fr 1fr auto;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);background:var(--panel);border-radius:14px}.stock-card:hover{border-color:#3a5c7a}.ticker{font-size:18px;font-weight:900}.company{color:var(--muted);font-size:12px}.score{font-size:22px;font-weight:900;color:var(--accent2)}.metric small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase}.metric b{font-size:14px}.pill{border-radius:999px;padding:5px 8px;font-size:11px;display:inline-block}.pill.good{background:#17392d;color:#a7e4bd}.pill.warn{background:#493617;color:#f0cf8d}.watch{font-size:21px;background:0;border:0;color:var(--accent2);cursor:pointer}.history-item{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:10px;display:flex;justify-content:space-between}.settings{max-width:680px}.settings hr{border:0;border-top:1px solid var(--line);margin:22px 0}dialog{width:min(930px,94vw);max-height:90vh;overflow:auto;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow)}dialog::backdrop{background:rgba(0,0,0,.72)}.close{float:right;border:0;background:0;color:var(--muted);font-size:28px;cursor:pointer}.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.detail-box{background:#07182e;border:1px solid var(--line);border-radius:12px;padding:12px}.score-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0}.subscore{background:#07182e;padding:10px;border-radius:10px;text-align:center}.subscore b{display:block;font-size:20px;color:var(--accent2)}.why{background:#0b2038;border-left:3px solid var(--accent);padding:14px;border-radius:8px;margin:15px 0}.checks{display:grid;grid-template-columns:1fr 1fr;gap:6px}.ok{color:var(--ok)}.bad{color:var(--danger)}canvas{width:100%;height:240px;background:#06152a;border:1px solid var(--line);border-radius:12px}.empty{color:var(--muted);padding:35px;text-align:center;border:1px dashed var(--line);border-radius:14px}@media(max-width:900px){.mode-grid{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr 1fr}.stock-card{grid-template-columns:1fr 1fr 1fr}.stock-card .metric:nth-child(n+5){display:none}.score-grid{grid-template-columns:repeat(3,1fr)}.tool{display:none}}@media(max-width:560px){main{padding:18px}.mode-grid{grid-template-columns:1fr}.topbar{padding:10px 14px}.brand .word,.analytics,.brandline{display:none}.form-grid{grid-template-columns:1fr}.scan-summary,.results-head{align-items:stretch;flex-direction:column}.stock-card{grid-template-columns:1.5fr .7fr .7fr}.budget{font-size:11px}.nav{padding:8px}.detail-grid{grid-template-columns:1fr}.score-grid{grid-template-columns:repeat(2,1fr)}}
+.saved-profiles{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.profile-chip{border:1px solid var(--line);background:#07182e;color:var(--text);border-radius:999px;padding:8px 11px;cursor:pointer}.profile-chip:hover{border-color:var(--accent)}
+
+/* v4.1 resilient shell patch */
+html{background:#041226;color-scheme:dark}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(rgba(224,165,104,.09) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.6),transparent 78%)}
+img{max-width:100%;display:block}.brand{min-width:222px;overflow:hidden}.brand .ca{flex:0 0 54px;width:54px!important;height:54px!important;border-radius:8px}.brand .word{width:108px!important;height:auto!important;max-height:28px;object-fit:contain}.topbar{overflow:hidden}.topbar>*{min-width:0}.mode-card,.btn,.choice,.profile-chip,.nav button{font-family:inherit}.mode-card{transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}.mode-card:hover{box-shadow:0 22px 50px rgba(0,0,0,.4)}.advanced summary{cursor:pointer;font-weight:800;color:var(--text)}.scan-summary strong{font-size:16px}.result-cards{min-height:80px}.stock-card{overflow:hidden}.stock-card>*{min-width:0}.company{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.settings input{font-family:monospace}.saved-profiles:empty{display:none}.nav span{display:inline-flex;min-width:18px;justify-content:center;border-radius:999px;background:#132c48;padding:1px 5px;font-size:10px}.view{animation:fadeIn .14s ease}@keyframes fadeIn{from{opacity:.3;transform:translateY(2px)}to{opacity:1;transform:none}}
+@media(max-width:720px){.topbar{height:auto;min-height:74px;flex-wrap:wrap;gap:8px}.budget{order:3}.brand{min-width:auto}.pipe{display:none}.nav{overflow-x:auto}.nav button{white-space:nowrap}}
+</style>
+</head>
+<body style="margin:0;background:#041226;color:#f6f0e8;font-family:Inter,'Segoe UI',Arial,sans-serif;min-height:100vh">
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Return to scanner selection" style="text-decoration:none;color:inherit">
+      <img src="./codex-ca.png?v=5.0" class="ca" alt="CA" width="54" height="54">
+      <span class="brandline" aria-hidden="true"></span>
+      <div>
+        <img src="./codex-word.png?v=5.0" class="word" alt="Codex" width="108" height="27">
+        <div class="analytics">ANALYTICS</div>
+      </div>
+    </a>
+    <div class="pipe" aria-hidden="true"></div>
+    <div class="tool"><b>Market Scanner</b><small>Focused research, not clutter</small></div>
+    <div class="spacer"></div>
+    <div class="budget" id="budgetChip">API 30/30</div>
+    <button class="btn ghost" data-nav="settings">Settings</button>
+  </header>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <button class="active" data-nav="scan">Scan</button>
+    <button data-nav="watchlist">Watchlist <span id="watchCount">0</span></button>
+    <button data-nav="history">History</button>
+    <button data-nav="settings">Settings</button>
+  </nav>
+
+  <main>
+    <section id="scanView" class="view active">
+      <div id="builder" class="builder">
+        <div class="hero">
+          <span class="kicker">START A SCAN</span>
+          <h1>What are you looking for?</h1>
+          <p>Choose a focused strategy. Codex narrows fundamentals first, then performs technical analysis locally to conserve API calls.</p>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card" data-mode="best"><b>Best Opportunities</b><span>Balanced quality, value, trend and momentum.</span></button>
+          <button class="mode-card featured" data-mode="gap"><b>Gap-Fill Reversal</b><span>Profitable pullbacks approaching an open prior gap-up.</span></button>
+          <button class="mode-card" data-mode="early"><b>Early Golden Cross</b><span>Catch SMA50 convergence before the cross occurs.</span></button>
+          <button class="mode-card" data-mode="custom"><b>Build My Scan</b><span>Answer a short quiz and let Codex translate your choices.</span></button>
+        </div>
+
+        <div id="savedProfiles" class="saved-profiles"></div>
+        <div id="quizPanel" class="panel hidden"></div>
+
+        <details class="advanced">
+          <summary>Advanced filters</summary>
+          <div class="form-grid">
+            <label>Min price <input id="minPrice" type="number" value="2" step=".01"></label>
+            <label>Min market cap ($M) <input id="minMarketCap" type="number" value="100"></label>
+            <label>Max P/E <input id="maxPE" type="number" placeholder="Any"></label>
+            <label>Min avg volume <input id="minAvgVolume" type="number" value="100000"></label>
+            <label>Max beta <input id="maxBeta" type="number" step=".1" placeholder="Any"></label>
+            <label>Min ROE % <input id="minROE" type="number" step=".1" placeholder="Any"></label>
+            <label>Positive FCF <select id="fcf"><option value="any">Not required</option><option value="positive">Required</option></select></label>
+            <label>Dividend <select id="dividend"><option value="any">Any</option><option value="yes">Payer only</option></select></label>
+          </div>
+        </details>
+        <div id="scanSummary" class="scan-summary hidden"></div>
+      </div>
+
+      <div id="runArea" class="hidden">
+        <div class="results-head">
+          <div><button class="link" id="newScan">← New scan</button><h2 id="resultTitle">Results</h2><p id="statusText"></p></div>
+          <div class="actions"><select id="resultGroup"><option value="match">Matches</option><option value="near">Near Matches</option><option value="all">All Analyzed</option></select><button class="btn ghost" id="exportBtn">Export CSV</button></div>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <div id="resultCards" class="result-cards"></div>
+      </div>
+    </section>
+
+    <section id="watchlistView" class="view">
+      <div class="page-title"><span class="kicker">SAVED RESEARCH</span><h1>Watchlist</h1><p>Stocks you want to revisit without rediscovering them from scratch.</p></div>
+      <div id="watchlistCards" class="result-cards"></div>
+    </section>
+
+    <section id="historyView" class="view">
+      <div class="page-title"><span class="kicker">RECENT ACTIVITY</span><h1>Scan History</h1><p>Your recent scan configurations and match counts are stored locally on this device.</p></div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <section id="settingsView" class="view">
+      <div class="page-title"><span class="kicker">SETTINGS</span><h1>Business Quant</h1></div>
+      <div class="panel settings">
+        <label>API key <input id="apiKey" type="password" placeholder="Paste your Business Quant key"></label>
+        <div class="row"><button class="btn primary" id="saveKey">Save &amp; Test</button><button class="btn ghost" id="clearCache">Clear cached data</button></div>
+        <p id="keyStatus" class="muted"></p>
+        <hr>
+        <h3>Free-tier budget</h3>
+        <p>Codex tracks calls made by this browser today. Business Quant may count other calls separately.</p>
+        <div class="budget-large" id="budgetLarge"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="detailDialog"><button class="close" id="closeDetail" aria-label="Close">×</button><div id="detailContent"></div></dialog>
+
+  <script src="./api.js?v=5.0" defer></script>
+  <script src="./scanner.js?v=5.0" defer></script>
+  <script src="./app.js?v=5.0" defer></script>
+</body>
+</html>
