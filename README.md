@@ -1,132 +1,89 @@
-# Codex Analytics Market Scanner
+# Girls Inc. PDF Workbench — v5
 
-A GitHub Pages-friendly NYSE/NASDAQ stock research terminal using the Codex Analytics visual system.
+A browser-based PDF arranging and splitting tool branded for Girls Inc. of Columbus & Phenix-Russell. PDF processing stays in the browser; the app does not upload document contents to a server.
 
-## Core universe
+## New in v5
 
-- NYSE equities
-- NASDAQ equities
-- OTC / pink-sheet securities excluded by exchange before analysis
+### Whole-PDF workflow
+- A **Source PDFs** strip appears above the individual page workspace.
+- Drag source PDF cards left/right to reorder entire PDFs.
+- Reordering a source PDF gathers its currently included pages back into a block while preserving the **current edited internal order** of those pages.
+- Drag an entire source PDF from the Source PDFs strip directly into the individual page grid.
+- A large **INSERT N-PAGE PDF HERE** marker shows the exact insertion point.
+- Whole-PDF movement is a **MOVE**, not a duplicate/copy.
+- Deleted pages stay deleted when a PDF is moved.
 
-## User-friendly workflow
+### Source PDF cards
+- Compact by default.
+- Use **Expand** to see view-only thumbnails of all original pages.
+- Pages removed from the project are visibly marked as removed.
+- Expanded thumbnails are reference-only; page editing remains in the main workspace.
 
-1. Choose a **Strategy** preset or leave it on Custom.
-2. Choose how recently signals must have occurred.
-3. Click **Scan Market**.
-4. Use the single **Results** dropdown to move between signal lists.
-5. Click a stock for detailed fundamentals, technical signals, and Best Day to Buy analysis.
+### Better large-document editing
+- Page drag-and-drop uses automatic scrolling near the browser edges.
+- **Go to page #** jumps directly to a page and highlights it.
+- **Move selected before/after page #** allows precise long-distance moves.
+- Multiple selected pages move together and preserve their current relative order.
 
-Advanced filters are organized into collapsible sections so the main workflow stays simple.
+### Selection behavior
+- Click = select one page.
+- Ctrl+Click / Cmd+Click = add or remove individual pages from the selection.
+- Shift+Click = select a continuous range from the most recent selection anchor.
 
-## Strategy presets
+### Undo / Redo
+- Visible **Undo** and **Redo** buttons.
+- Ctrl+Z / Cmd+Z = Undo.
+- Ctrl+Y / Cmd+Y = Redo.
+- Ctrl+Shift+Z / Cmd+Shift+Z = Redo.
+- Undo/Redo covers page moves, whole-PDF moves, source-PDF reorder, deletion, rotation, bulk moves, and Reset Arrangement.
+- Editing history is kept for up to 100 actions.
 
-- Quality & Profitability
-- Value
-- Dividend Income
-- Momentum
-- Breakout Candidates
-- Lower Volatility
-- Profitable Small Cap
-- Custom
+### Performance
+- Page and source thumbnails use lazy rendering so large projects do not try to render every PDF page immediately.
 
-Every preset simply fills transparent filters; you can change any value afterward.
+### Reset vs Clear
+- **Reset arrangement** restores all currently included pages to original upload/file order and original page order. Deleted pages remain deleted. Rotations are preserved.
+- **Clear project** removes every loaded PDF and clears editing history.
 
-## Fundamental filters
+## Existing functionality retained
+- Upload multiple PDFs.
+- Individual page thumbnails.
+- Drag individual pages into a new order.
+- Rotate pages individually or as a selection.
+- Delete pages.
+- Extract selected pages into one PDF.
+- Split selected pages into individual PDFs inside a ZIP.
+- Split by custom ranges.
+- Custom filename dialog for all download operations.
+- Girls Inc. of Columbus & Phenix-Russell branding and embedded logo.
 
-- Positive / negative / any net income
-- Price
-- Market capitalization
-- P/E
-- Sector
-- Revenue growth
-- Return on equity
-- Debt / equity
-- Free cash flow
-- Dividend payer
-- Dividend yield
+## Update an existing GitHub Pages installation
 
-Some advanced fundamental metrics depend on which screener metrics your Business Quant API account exposes. If a selected metric is unavailable, the app tells you instead of silently ignoring the filter.
+1. Download and unzip the v5 package.
+2. In your existing GitHub repository, replace these files in the repository root:
+   - `index.html`
+   - `styles.css`
+   - `app.js`
+   - `README.md` (optional, but recommended)
+3. Commit the changes. Example commit message:
 
-## Technical filters
+   `Add whole-PDF arranging, navigator, undo-redo, and large-file improvements`
 
-- Beta range and lookback
-- Distance from 52-week high / low
-- 20-day average volume
-- RSI 14
-- SMA 20 / 50 / 200 trend filters
-- Best Day to Buy weekday lookback
-
-## Signal scanners
-
-- Golden Star (custom transparent approximation)
-- Gap Up / Gap Down
-- Golden Cross / Death Cross
-- Bollinger Band Breakout / Breakdown
-- MACD Bullish / Bearish Cross
-- Unusual Volume
-- 52-Week Breakout
-- Volume-Confirmed 20-Day Breakout
-
-The signal lookback is controlled independently from the weekday-analysis lookback.
-
-## Codex Score
-
-Each result receives a transparent 0–100 ranking based on a mix of:
-
-- Profitability
-- Revenue growth / ROE when available
-- Debt level when available
-- Price above long-term trend
-- Bullish moving-average structure
-- RSI condition
-- Proximity to the 52-week high
-- Dividend status
-- Bullish and bearish technical signals
-
-It is a research ranking, not an investment recommendation or expected-return forecast.
-
-## Best Day to Buy
-
-For Monday through Friday, the stock detail screen calculates:
-
-- Average open
-- Average intraday low
-- Median intraday low
-- Average close
-- Number of weeks where that weekday produced the week's lowest intraday price
-- Weekly-low win rate
-
-The displayed Best Day to Buy is a descriptive historical composite, not a prediction.
-
-## Data source
-
-The app is written for the Business Quant API:
-
-- `/universe`
-- `/metadata?table=screener`
-- `/screener`
-- `/quotes`
-
-Your API key is stored only in your browser's localStorage. Do not commit an API key to GitHub.
-
-## GitHub Pages
-
-Upload all files in this ZIP to the root of your repository, replacing the prior version. Then use:
-
-**Settings → Pages → Deploy from a branch → main → /(root)**
+4. If GitHub Pages is already configured to deploy from the `main` branch and `/ (root)`, no Pages setting changes are needed.
+5. After deployment completes, use **Ctrl+F5** on Windows to force-refresh the site if the old version is cached.
 
 ## Files
 
-- `index.html`
-- `styles.css`
-- `api.js`
-- `scanner.js`
-- `app.js`
-- `codex-ca.png`
-- `codex-word.png`
-- `README.md`
-- `.gitignore`
+- `index.html` — application layout, embedded Girls Inc. logo, controls, templates, and dialogs.
+- `styles.css` — Girls Inc. styling, source PDF strip, page workspace, insertion marker, and responsive layout.
+- `app.js` — PDF loading, arranging, whole-document movement, undo/redo, selection, lazy rendering, splitting, and export logic.
 
-## Disclaimer
+## External browser libraries
 
-This application is a market research tool, not individualized investment advice. Historical patterns and technical signals can fail or reverse, and market/fundamental data can be delayed or inaccurate. Do your own due diligence before trading.
+The app loads these libraries from jsDelivr:
+- PDF.js
+- pdf-lib
+- SortableJS
+- JSZip
+
+The PDF documents themselves are processed locally in the browser.

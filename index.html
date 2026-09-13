@@ -3,352 +3,185 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Codex Analytics NYSE/NASDAQ stock scanner." />
-  <title>Codex Analytics | Market Scanner</title>
+  <meta name="theme-color" content="#ED1849" />
+  <title>Girls Inc. PDF Workbench</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="codex-brand-enhanced" aria-label="Codex Analytics">
-        <img class="codex-ca-art" src="codex-ca.png" alt="" />
-        <div class="brand-divider"></div>
-        <div class="codex-word-art">
-          <img class="codex-word-image" src="codex-word.png" alt="CODEX" />
-          <div class="codex-analytics-line"><span></span><b>ANALYTICS</b><span></span></div>
+  <header class="app-header">
+    <div class="brand-lockup">
+      <div class="brand-mark">
+        <img src="data:image/jpeg;base64,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" alt="Girls Inc. of Columbus &amp; Phenix-Russell logo" decoding="async" />
+      </div>
+      <div class="brand-copy">
+        <div class="org-name">Girls Inc. of Columbus &amp; Phenix-Russell</div>
+        <h1>PDF Workbench</h1>
+        <p>Arrange, split, rotate, remove, and rebuild PDFs entirely in your browser.</p>
+      </div>
+    </div>
+    <div class="privacy-pill"><span class="privacy-dot"></span>Local browser processing</div>
+  </header>
+
+  <main>
+    <section class="mission-strip" aria-label="Girls Inc. mission">
+      <span>STRONG</span><i></i><span>SMART</span><i></i><span>BOLD</span>
+    </section>
+
+    <section class="toolbar card">
+      <label class="upload-btn">
+        <input id="fileInput" type="file" accept="application/pdf,.pdf" multiple hidden />
+        Add PDF files
+      </label>
+      <button id="undoBtn" class="secondary" disabled>↶ Undo</button>
+      <button id="redoBtn" class="secondary" disabled>↷ Redo</button>
+      <button id="selectAllBtn" class="secondary">Select all</button>
+      <button id="clearSelectionBtn" class="secondary">Clear selection</button>
+      <button id="rotateLeftBtn" class="secondary">↶ Rotate</button>
+      <button id="rotateRightBtn" class="secondary">↷ Rotate</button>
+      <button id="deleteBtn" class="danger">Delete selected</button>
+      <button id="resetArrangementBtn" class="secondary">Reset arrangement</button>
+      <button id="clearProjectBtn" class="danger">Clear project</button>
+    </section>
+
+    <section id="dropZone" class="drop-zone card">
+      <div class="drop-inner">
+        <div class="drop-icon">PDF</div>
+        <strong>Drop PDF files here</strong>
+        <span>or use “Add PDF files” above</span>
+      </div>
+    </section>
+
+    <section class="status-row">
+      <div id="statusText">No PDFs loaded.</div>
+      <div id="selectionText">0 selected</div>
+    </section>
+
+    <section id="sourceSection" class="source-section card hidden">
+      <div class="section-head">
+        <div>
+          <div class="feature-kicker">SOURCE PDFs</div>
+          <h2>Order whole PDFs first</h2>
+          <p>Drag PDF cards to reorganize entire documents. Expand a card to inspect its pages.</p>
         </div>
       </div>
-      <div class="header-pipe"></div>
-      <div class="tool-block">
-        <strong>Market Scanner</strong>
-        <span>NYSE + NASDAQ research terminal</span>
+      <div id="sourceList" class="source-list"></div>
+    </section>
+
+    <section id="workspace" class="workspace card hidden">
+      <div class="workspace-head">
+        <div>
+          <h2>Arrange pages</h2>
+          <p>Drag individual pages, move selections by page number, or drop an entire PDF between pages.</p>
+        </div>
+        <button id="downloadArrangedBtn" class="primary">Download arranged PDF</button>
       </div>
-      <div class="spacer"></div>
-      <div class="top-actions">
-        <button id="settingsBtn" class="button quiet" title="API settings">Settings</button>
-        <button id="exportBtn" class="button quiet" disabled>Export</button>
-        <button id="scanBtn" class="button primary">Scan Market</button>
+
+      <div class="navigator-bar">
+        <div class="nav-group">
+          <label for="goToPageInput">Go to page</label>
+          <input id="goToPageInput" type="number" min="1" inputmode="numeric" placeholder="#" />
+          <button id="goToPageBtn" class="secondary">Go</button>
+        </div>
+        <div class="nav-group grow">
+          <label for="moveTargetInput">Move selected</label>
+          <select id="moveModeSelect">
+            <option value="before">before page</option>
+            <option value="after">after page</option>
+          </select>
+          <input id="moveTargetInput" type="number" min="1" inputmode="numeric" placeholder="#" />
+          <button id="moveSelectedBtn" class="secondary">Move</button>
+        </div>
+        <div class="shortcut-hint">Click • Ctrl+Click • Shift+Click</div>
       </div>
-    </header>
 
-    <main class="workspace">
-      <aside class="control-panel">
-        <section class="quick-card">
-          <div class="section-kicker">QUICK START</div>
-          <h2>What are you looking for?</h2>
-          <label class="field">
-            <span>Strategy</span>
-            <select id="strategyPreset">
-              <option value="custom" selected>Custom</option>
-              <option value="quality">Quality & Profitability</option>
-              <option value="value">Value</option>
-              <option value="dividend">Dividend Income</option>
-              <option value="momentum">Momentum</option>
-              <option value="breakout">Breakout Candidates</option>
-              <option value="lowbeta">Lower Volatility</option>
-              <option value="smallcap">Profitable Small Cap</option>
-            </select>
-          </label>
+      <div id="pageGrid" class="page-grid"></div>
+    </section>
 
-          <div class="mini-grid">
-            <label class="field">
-              <span>Signals from past</span>
-              <select id="scanDays">
-                <option value="3">3 trading days</option>
-                <option value="5">5 trading days</option>
-                <option value="10" selected>10 trading days</option>
-                <option value="20">20 trading days</option>
-                <option value="60">60 trading days</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Analyze up to</span>
-              <select id="candidateLimit">
-                <option value="250">250 stocks</option>
-                <option value="500" selected>500 stocks</option>
-                <option value="1000">1,000 stocks</option>
-                <option value="2500">2,500 stocks</option>
-                <option value="all">All matches</option>
-              </select>
-            </label>
-          </div>
+    <section id="splitSection" class="split-grid hidden">
+      <article class="card split-card">
+        <div class="feature-kicker">EXTRACT</div>
+        <h2>Extract selected pages</h2>
+        <p>Creates one PDF containing only the currently selected pages, in the current arranged order.</p>
+        <button id="extractSelectedBtn" class="primary">Download selected pages</button>
+      </article>
+      <article class="card split-card">
+        <div class="feature-kicker">SPLIT</div>
+        <h2>Split selected pages</h2>
+        <p>Creates one PDF per selected page and packages them into a ZIP file.</p>
+        <button id="splitSelectedBtn" class="primary">Download selected pages as ZIP</button>
+      </article>
+      <article class="card split-card ranges-card">
+        <div class="feature-kicker">RANGES</div>
+        <h2>Split by ranges</h2>
+        <p>Use arranged page numbers. Separate output files with semicolons.</p>
+        <div class="examples">Example: <code>1-3; 4-6; 7,9,11-13</code></div>
+        <input id="rangeInput" type="text" placeholder="1-3; 4-6; 7,9,11-13" />
+        <button id="splitRangesBtn" class="primary">Download range PDFs as ZIP</button>
+      </article>
+    </section>
 
-          <div class="exchange-row">
-            <label><input type="checkbox" id="exchangeNYSE" checked /> NYSE</label>
-            <label><input type="checkbox" id="exchangeNASDAQ" checked /> NASDAQ</label>
-          </div>
-          <button id="resetBtn" class="text-button">Reset all filters</button>
-        </section>
+    <footer class="app-footer">
+      <div>Girls Inc. of Columbus &amp; Phenix-Russell</div>
+      <div>Files remain on your device during processing.</div>
+    </footer>
+  </main>
 
-        <details class="filter-group" open>
-          <summary>
-            <span><b>Company Quality</b><small>Profitability, valuation, dividends</small></span>
-          </summary>
-          <div class="filter-body">
-            <label class="field">
-              <span>Profitability</span>
-              <select id="profitability">
-                <option value="positive" selected>Positive net income</option>
-                <option value="negative">Negative net income</option>
-                <option value="any">Any</option>
-              </select>
-            </label>
-
-            <div class="mini-grid">
-              <label class="field"><span>Min price</span><input type="number" id="minPrice" min="0" step="0.01" value="2" /></label>
-              <label class="field"><span>Max price</span><input type="number" id="maxPrice" min="0" step="0.01" placeholder="Any" /></label>
-            </div>
-            <div class="mini-grid">
-              <label class="field"><span>Min market cap ($M)</span><input type="number" id="minMarketCap" min="0" step="1" value="100" /></label>
-              <label class="field"><span>Max P/E</span><input type="number" id="maxPE" step="0.1" placeholder="Any" /></label>
-            </div>
-
-            <label class="field"><span>Sector</span><select id="sector"><option value="">All sectors</option></select></label>
-
-            <div class="mini-grid">
-              <label class="field"><span>Min revenue growth %</span><input type="number" id="minRevenueGrowth" step="0.1" placeholder="Any" /></label>
-              <label class="field"><span>Min ROE %</span><input type="number" id="minROE" step="0.1" placeholder="Any" /></label>
-            </div>
-            <label class="field"><span>Max debt / equity</span><input type="number" id="maxDebtEquity" min="0" step="0.1" placeholder="Any" /></label>
-
-            <div class="mini-grid">
-              <label class="field"><span>Min dividend yield %</span><input type="number" id="minDivYield" min="0" step="0.1" placeholder="Any" /></label>
-              <label class="field"><span>Max dividend yield %</span><input type="number" id="maxDivYield" min="0" step="0.1" placeholder="Any" /></label>
-            </div>
-            <label class="field">
-              <span>Dividend payer</span>
-              <select id="dividendPayer">
-                <option value="any" selected>Any</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Free cash flow</span>
-              <select id="fcfFilter">
-                <option value="any" selected>Any</option>
-                <option value="positive">Positive only</option>
-              </select>
-            </label>
-          </div>
-        </details>
-
-        <details class="filter-group">
-          <summary>
-            <span><b>Price & Risk</b><small>Beta, 52-week position, RSI, trend</small></span>
-          </summary>
-          <div class="filter-body">
-            <div class="mini-grid">
-              <label class="field"><span>Min beta</span><input type="number" id="minBeta" step="0.05" placeholder="Any" /></label>
-              <label class="field"><span>Max beta</span><input type="number" id="maxBeta" step="0.05" placeholder="Any" /></label>
-            </div>
-            <label class="field">
-              <span>Beta lookback</span>
-              <select id="betaLookback">
-                <option value="63">3 months</option>
-                <option value="126">6 months</option>
-                <option value="252" selected>1 year</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Best day to buy lookback</span>
-              <select id="weekdayLookback">
-                <option value="30">30 trading days</option>
-                <option value="63">3 months</option>
-                <option value="126">6 months</option>
-                <option value="252" selected>1 year</option>
-              </select>
-            </label>
-            <div class="mini-grid">
-              <label class="field"><span>Within % of 52W high</span><input type="number" id="nearHigh" min="0" max="100" step="0.5" placeholder="Any" /></label>
-              <label class="field"><span>Within % of 52W low</span><input type="number" id="nearLow" min="0" max="100" step="0.5" placeholder="Any" /></label>
-            </div>
-            <label class="field"><span>Min avg volume (20D)</span><input type="number" id="minAvgVolume" min="0" step="1000" value="100000" /></label>
-            <div class="mini-grid">
-              <label class="field"><span>Min RSI 14</span><input type="number" id="minRSI" min="0" max="100" step="1" placeholder="Any" /></label>
-              <label class="field"><span>Max RSI 14</span><input type="number" id="maxRSI" min="0" max="100" step="1" placeholder="Any" /></label>
-            </div>
-            <label class="field">
-              <span>Trend</span>
-              <select id="trendFilter">
-                <option value="any" selected>Any trend</option>
-                <option value="above20">Above SMA 20</option>
-                <option value="above50">Above SMA 50</option>
-                <option value="above200">Above SMA 200</option>
-                <option value="bullstack">SMA 20 &gt; 50 &gt; 200</option>
-              </select>
-            </label>
-          </div>
-        </details>
-
-        <details class="filter-group">
-          <summary>
-            <span><b>Signal Sensitivity</b><small>Fine-tune technical alerts</small></span>
-          </summary>
-          <div class="filter-body">
-            <div class="mini-grid">
-              <label class="field"><span>Gap threshold %</span><input type="number" id="gapThreshold" min="0.1" max="50" step="0.1" value="2" /></label>
-              <label class="field"><span>Golden Star tolerance %</span><input type="number" id="goldenTolerance" min="0.1" max="10" step="0.1" value="2.5" /></label>
-            </div>
-            <div class="mini-grid">
-              <label class="field"><span>Unusual volume ×</span><input type="number" id="unusualVolumeMultiplier" min="1.1" max="20" step="0.1" value="2" /></label>
-              <label class="field"><span>Breakout volume ×</span><input type="number" id="breakoutVolumeMultiplier" min="1" max="20" step="0.1" value="1.5" /></label>
-            </div>
-            <label class="field">
-              <span>Required signal</span>
-              <select id="requiredSignal">
-                <option value="any" selected>Any / no requirement</option>
-                <option value="golden">Golden Star</option>
-                <option value="gapup">Gap Up</option>
-                <option value="gapdown">Gap Down</option>
-                <option value="bollingerup">Bollinger Breakout</option>
-                <option value="bollingerdown">Bollinger Breakdown</option>
-                <option value="goldencross">Golden Cross</option>
-                <option value="deathcross">Death Cross</option>
-                <option value="macdbull">MACD Bullish Cross</option>
-                <option value="macdbear">MACD Bearish Cross</option>
-                <option value="unusualvolume">Unusual Volume</option>
-                <option value="breakout52">52-Week Breakout</option>
-                <option value="volbreakout">Volume-Confirmed Breakout</option>
-              </select>
-            </label>
-          </div>
-        </details>
-      </aside>
-
-      <section class="content">
-        <div class="status-card">
-          <div class="status-copy">
-            <span id="statusDot" class="status-dot idle"></span>
-            <div>
-              <strong id="statusTitle">Ready to scan</strong>
-              <span id="statusText">Choose a strategy or customize the filters.</span>
-            </div>
-          </div>
-          <div id="progressWrap" class="progress-wrap hidden">
-            <div class="progress-bar"><div id="progressBar"></div></div>
-            <span id="progressLabel">0%</span>
-          </div>
+  <template id="sourceCardTemplate">
+    <article class="source-card" draggable="true">
+      <div class="source-card-top">
+        <div class="source-preview"><canvas></canvas></div>
+        <div class="source-card-copy">
+          <div class="source-file-name"></div>
+          <div class="source-page-count"></div>
+          <div class="source-drag-hint">Drag whole PDF</div>
         </div>
+        <button class="source-expand-btn secondary" type="button">Expand</button>
+      </div>
+      <div class="source-expanded hidden"></div>
+    </article>
+  </template>
 
-        <div class="stats-grid">
-          <div class="stat"><span>Analyzed</span><strong id="statAnalyzed">0</strong></div>
-          <div class="stat"><span>Matches</span><strong id="statMatches">0</strong></div>
-          <div class="stat"><span>Golden Star</span><strong id="statGolden">0</strong></div>
-          <div class="stat"><span>Gap Up</span><strong id="statGapUp">0</strong></div>
-          <div class="stat"><span>Gap Down</span><strong id="statGapDown">0</strong></div>
+  <template id="pageCardTemplate">
+    <article class="page-card" tabindex="0">
+      <div class="index-badge"></div>
+      <button class="select-toggle" type="button" title="Select page" aria-label="Select page"></button>
+      <div class="thumb-wrap"><canvas></canvas></div>
+      <div class="page-meta">
+        <div class="source-name"></div>
+        <div class="source-page"></div>
+      </div>
+      <div class="mini-actions">
+        <button class="mini-rotate-left" type="button" title="Rotate left">↶</button>
+        <button class="mini-rotate-right" type="button" title="Rotate right">↷</button>
+        <button class="mini-delete" type="button" title="Remove page">✕</button>
+      </div>
+    </article>
+  </template>
+
+  <div id="filenameModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="filenameModalTitle">
+    <div class="filename-modal">
+      <div class="modal-brand-bar"></div>
+      <div class="modal-content">
+        <div class="modal-kicker">Girls Inc. PDF Workbench</div>
+        <h2 id="filenameModalTitle">Name your download</h2>
+        <p id="filenameModalDescription">Choose a name for the file before downloading.</p>
+        <label class="filename-label" for="filenameInput">File name</label>
+        <div class="filename-field">
+          <input id="filenameInput" type="text" autocomplete="off" spellcheck="false" />
+          <span id="filenameExtension" class="filename-extension">.pdf</span>
         </div>
-
-        <div class="results-header">
-          <div>
-            <div class="section-kicker">RESULTS</div>
-            <h2>Scanner Results</h2>
-          </div>
-          <div class="result-controls">
-            <select id="resultView" aria-label="Result list">
-              <option value="all">All Matches</option>
-              <option value="golden">Golden Star</option>
-              <option value="gapup">Gap Up</option>
-              <option value="gapdown">Gap Down</option>
-              <option value="bollingerup">Bollinger Breakout</option>
-              <option value="bollingerdown">Bollinger Breakdown</option>
-              <option value="goldencross">Golden Cross</option>
-              <option value="deathcross">Death Cross</option>
-              <option value="macdbull">MACD Bullish Cross</option>
-              <option value="macdbear">MACD Bearish Cross</option>
-              <option value="unusualvolume">Unusual Volume</option>
-              <option value="breakout52">52-Week Breakout</option>
-              <option value="volbreakout">Volume-Confirmed Breakout</option>
-            </select>
-            <input id="resultSearch" type="search" placeholder="Search ticker or company…" />
-            <select id="sortBy">
-              <option value="scoreDesc">Sort: Codex Score</option>
-              <option value="ticker">Ticker</option>
-              <option value="marketCapDesc">Market cap</option>
-              <option value="nearHighAsc">Closest to 52W high</option>
-              <option value="divYieldDesc">Dividend yield</option>
-              <option value="betaAsc">Lowest beta</option>
-              <option value="gapDesc">Largest gap up</option>
-              <option value="gapAsc">Largest gap down</option>
-            </select>
-          </div>
+        <div id="filenameHint" class="filename-hint">The extension will be added automatically.</div>
+        <div class="modal-actions">
+          <button id="filenameCancelBtn" class="secondary" type="button">Cancel</button>
+          <button id="filenameConfirmBtn" class="primary" type="button">Download</button>
         </div>
-
-        <div class="table-card">
-          <div class="table-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th>Score</th>
-                  <th>Ticker</th>
-                  <th>Company</th>
-                  <th>Exchange</th>
-                  <th>Price</th>
-                  <th>Net Income</th>
-                  <th>52W High</th>
-                  <th>% From High</th>
-                  <th>Beta</th>
-                  <th>Dividend</th>
-                  <th>Yield</th>
-                  <th>RSI</th>
-                  <th>Avg Vol</th>
-                  <th>Signals</th>
-                </tr>
-              </thead>
-              <tbody id="resultsBody">
-                <tr><td colspan="14" class="empty">Run a scan to see matching stocks.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <details class="method-card">
-          <summary>How the technical signals work</summary>
-          <div class="method-body">
-            <p><strong>Golden Star (Custom):</strong> price, SMA20 and SMA50 converge while price and moving-average slopes strengthen. This is a transparent approximation, not StockInvest.us's proprietary formula.</p>
-            <p><strong>Golden / Death Cross:</strong> SMA50 crosses above / below SMA200.</p>
-            <p><strong>Bollinger Breakout / Breakdown:</strong> close crosses above the upper or below the lower 20-day, 2-standard-deviation Bollinger Band.</p>
-            <p><strong>MACD Cross:</strong> MACD(12,26) crosses its 9-period signal line.</p>
-            <p><strong>Unusual Volume:</strong> session volume exceeds your selected multiple of the prior 20-session average.</p>
-            <p><strong>52-Week Breakout:</strong> closing price exceeds the prior 252-session high.</p>
-            <p><strong>Volume-Confirmed Breakout:</strong> price closes above the prior 20-session high while volume exceeds your selected multiple of the prior 20-session average.</p>
-            <p><strong>Gap:</strong> opening price versus the prior session close.</p>
-            <p><strong>Best Day to Buy:</strong> compares weekday average/median prices and how often each weekday produced the lowest intraday price of its calendar week.</p>
-            <p><strong>Codex Score:</strong> a transparent 0–100 research score combining profitability, price trend, momentum, dividend, proximity to highs, volume quality, and bullish/bearish signal balance. It is a ranking aid, not a forecast.</p>
-          </div>
-        </details>
-      </section>
-    </main>
+      </div>
+    </div>
   </div>
 
-  <dialog id="settingsDialog">
-    <form method="dialog" class="dialog-card" id="settingsForm">
-      <div class="dialog-title-row">
-        <div><div class="section-kicker">DATA CONNECTION</div><h2>Business Quant API</h2></div>
-        <button value="cancel" class="icon-button" aria-label="Close">×</button>
-      </div>
-      <p>Your API key stays in this browser's local storage and is not included in the GitHub repository.</p>
-      <label class="field"><span>API Key</span><input id="apiKey" type="password" autocomplete="off" placeholder="Paste API key" /></label>
-      <div class="dialog-actions">
-        <button type="button" id="testApiBtn" class="button quiet">Test</button>
-        <button value="save" class="button primary">Save Settings</button>
-      </div>
-      <div id="apiTestResult" class="api-test"></div>
-    </form>
-  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <dialog id="detailDialog">
-    <div class="dialog-card detail-dialog">
-      <div class="dialog-title-row">
-        <div><div class="section-kicker">STOCK DETAIL</div><h2 id="detailTitle">—</h2></div>
-        <button id="closeDetailBtn" class="icon-button" aria-label="Close">×</button>
-      </div>
-      <div id="detailContent"></div>
-    </div>
-  </dialog>
-
-  <script src="api.js"></script>
-  <script src="scanner.js"></script>
-  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
